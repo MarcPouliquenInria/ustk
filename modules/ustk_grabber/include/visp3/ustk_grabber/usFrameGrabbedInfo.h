@@ -41,7 +41,7 @@
 
 #include <visp3/ustk_core/usConfig.h>
 
-#if defined(USTK_HAVE_QT5) || defined(USTK_HAVE_VTK_QT)
+//#if defined(USTK_HAVE_QT5) || defined(USTK_HAVE_VTK_QT)
 
 #include <visp3/ustk_grabber/usNetworkGrabber.h>
 
@@ -147,5 +147,5 @@ template <class Type> std::ostream &operator<<(std::ostream &out, const usFrameG
   return out;
 }
 
-#endif // QT4 || QT5
+//#endif // QT4 || QT5
 #endif // __usFrameGrabbedInfo_h_

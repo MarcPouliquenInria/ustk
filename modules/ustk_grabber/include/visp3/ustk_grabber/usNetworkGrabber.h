@@ -43,7 +43,7 @@
 #include <visp3/ustk_core/usConfig.h>
 #include <visp3/ustk_grabber/usAcquisitionParameters.h>
 
-#if defined(USTK_HAVE_QT5) || defined(USTK_HAVE_VTK_QT)
+//#if defined(USTK_HAVE_QT5) || defined(USTK_HAVE_VTK_QT)
 
 #include <cassert>
 #include <cstring>
@@ -221,5 +221,5 @@ protected:
   bool m_isRunning;
 };
 
-#endif // QT4 || QT5
+//#endif // QT4 || QT5
 #endif // __usNetworkGrabber_h_

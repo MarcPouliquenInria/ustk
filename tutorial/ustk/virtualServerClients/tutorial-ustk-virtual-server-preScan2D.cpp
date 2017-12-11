@@ -8,6 +8,7 @@
 
 #include <qapplication.h>
 #include <qthread.h>
+#include <qstringlist.h>
 
 #include <visp3/ustk_grabber/usNetworkGrabberPreScan2D.h>
 #include <visp3/ustk_io/usImageIo.h>

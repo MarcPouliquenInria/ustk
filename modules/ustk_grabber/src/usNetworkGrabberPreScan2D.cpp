@@ -33,7 +33,7 @@
 
 #include <visp3/ustk_grabber/usNetworkGrabberPreScan2D.h>
 
-#if defined(USTK_HAVE_QT5) || defined(USTK_HAVE_VTK_QT)
+//#if defined(USTK_HAVE_QT5) || defined(USTK_HAVE_VTK_QT)
 
 #include <QtCore/QDataStream>
 #include <QtCore/QEventLoop>
@@ -314,4 +314,4 @@ void usNetworkGrabberPreScan2D::activateRecording(std::string path)
 */
 void usNetworkGrabberPreScan2D::stopRecording() { m_recordingOn = false; }
 
-#endif
+//#endif

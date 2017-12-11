@@ -33,7 +33,7 @@
 
 #include <visp3/ustk_grabber/usNetworkGrabber.h>
 
-#if defined(USTK_HAVE_QT5) || defined(USTK_HAVE_VTK_QT)
+//#if defined(USTK_HAVE_QT5) || defined(USTK_HAVE_VTK_QT)
 
 #include <fstream>
 #include <iostream>
@@ -690,4 +690,4 @@ int usNetworkGrabber::getSector() { return m_acquisitionParamters.getSector(); }
 */
 int usNetworkGrabber::getTransmitFrequency() { return m_acquisitionParamters.getTransmitFrequency(); }
 
-#endif
+//#endif

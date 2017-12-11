@@ -40,7 +40,7 @@
 
 #include <visp3/ustk_core/usConfig.h>
 
-#if defined(USTK_HAVE_QT5) || defined(USTK_HAVE_VTK_QT)
+//#if defined(USTK_HAVE_QT5) || defined(USTK_HAVE_VTK_QT)
 
 #include <vector>
 
@@ -106,5 +106,5 @@ private:
   uint64_t m_firstImageTimestamp;
 };
 
-#endif // QT4 || QT5
+//#endif // QT4 || QT5
 #endif // __usNetworkGrabberPreScan2D_h_
