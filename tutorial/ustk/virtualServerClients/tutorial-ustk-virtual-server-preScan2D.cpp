@@ -3,11 +3,11 @@
 #include <iostream>
 #include <visp3/ustk_core/usConfig.h>
 
-#if (defined(USTK_HAVE_QT5) || defined(USTK_HAVE_VTK_QT)) &&                                                           \
+//#if (defined(USTK_HAVE_QT5) || defined(USTK_HAVE_VTK_QT)) &&                                                           \
     (defined(VISP_HAVE_X11) || defined(VISP_HAVE_GDI) || defined(VISP_HAVE_OPENCV))
 
-#include <QApplication>
-#include <QtCore/QThread>
+#include <qapplication.h>
+#include <qthread.h>
 
 #include <visp3/ustk_grabber/usNetworkGrabberPreScan2D.h>
 #include <visp3/ustk_io/usImageIo.h>
@@ -91,7 +91,7 @@ int main(int argc, char **argv)
 
   return app.exec();
 }
-
+/*
 #else
 int main()
 {
@@ -100,4 +100,4 @@ int main()
   return 0;
 }
 
-#endif
+#endif*/

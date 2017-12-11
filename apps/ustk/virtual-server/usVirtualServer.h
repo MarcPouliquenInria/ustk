@@ -42,6 +42,7 @@
 #include <QtCore/QDateTime>
 #include <QtCore/QFile>
 #include <QtCore/QString>
+#include <QtCore/QStringList>
 #include <QtNetwork/QTcpServer>
 #include <QtNetwork/QTcpSocket>
 

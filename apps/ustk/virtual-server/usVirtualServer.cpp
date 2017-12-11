@@ -118,7 +118,8 @@ void usVirtualServer::readIncomingData()
   // prepare reading in QDataStream
   QDataStream in;
   in.setDevice(connectionSoc);
-  in.setVersion(QDataStream::Qt_5_0);
+  //in.setVersion(QDataStream::Qt_5_0);
+  in.setVersion(QDataStream::Qt_4_8);
 
   // read header id
   int id;
@@ -136,7 +137,9 @@ void usVirtualServer::readIncomingData()
     // send back default params
     QByteArray block;
     QDataStream out(&block, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_5_0);
+    //out.setVersion(QDataStream::Qt_5_0);
+    out.setVersion(QDataStream::Qt_4_8);
+
     out << confirmHeader.headerId;
     out << confirmHeader.initOk;
     out << confirmHeader.probeId;
@@ -491,7 +494,8 @@ void usVirtualServer::sendingLoopSequenceXml()
 
     QByteArray block;
     QDataStream out(&block, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_5_0);
+    //out.setVersion(QDataStream::Qt_5_0);
+    out.setVersion(QDataStream::Qt_4_8);
     out << imageHeader.headerId;
     out << imageHeader.frameCount;
     out << imageHeader.timeStamp;
@@ -1417,7 +1421,8 @@ void usVirtualServer::sendingLoopSequenceMHD()
 
       QByteArray block;
       QDataStream out(&block, QIODevice::WriteOnly);
-      out.setVersion(QDataStream::Qt_5_0);
+      //out.setVersion(QDataStream::Qt_5_0);
+      out.setVersion(QDataStream::Qt_4_8);
 
       out << imageHeader.headerId;
       out << imageHeader.frameCount;
@@ -1458,7 +1463,8 @@ void usVirtualServer::sendingLoopSequenceMHD()
 
       QByteArray block;
       QDataStream out(&block, QIODevice::WriteOnly);
-      out.setVersion(QDataStream::Qt_5_0);
+      //out.setVersion(QDataStream::Qt_5_0);
+      out.setVersion(QDataStream::Qt_4_8);
 
       out << imageHeader.headerId;
       out << imageHeader.frameCount;
@@ -1500,7 +1506,8 @@ void usVirtualServer::sendingLoopSequenceMHD()
 
       QByteArray block;
       QDataStream out(&block, QIODevice::WriteOnly);
-      out.setVersion(QDataStream::Qt_5_0);
+      //out.setVersion(QDataStream::Qt_5_0);
+      out.setVersion(QDataStream::Qt_4_8);
 
       out << imageHeader.headerId;
       out << imageHeader.frameCount;
@@ -1545,7 +1552,8 @@ void usVirtualServer::sendingLoopSequenceMHD()
       while (!endOfVolume) {
         QByteArray block;
         QDataStream out(&block, QIODevice::WriteOnly);
-        out.setVersion(QDataStream::Qt_5_0);
+      //out.setVersion(QDataStream::Qt_5_0);
+      out.setVersion(QDataStream::Qt_4_8);
         // new frame to send
         if (m_pauseOn) { // pause case (we send volumes V, V+1, V, V+1, ...)
           // check if current volume is odd or even
@@ -1727,7 +1735,8 @@ void usVirtualServer::sendingLoopSequenceMHD()
       while (!endOfVolume) {
         QByteArray block;
         QDataStream out(&block, QIODevice::WriteOnly);
-        out.setVersion(QDataStream::Qt_5_0);
+      //out.setVersion(QDataStream::Qt_5_0);
+      out.setVersion(QDataStream::Qt_4_8);
         // new frame to send
         if (m_pauseOn) { // pause case (we send volumes V, V+1, V, V+1, ...)
           // check if current volume is odd or even

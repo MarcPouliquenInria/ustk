@@ -42,6 +42,10 @@ usConsoleListener::usConsoleListener()
   connect(m_notifier, SIGNAL(activated(int)), this, SLOT(readCommand()));
 }
 
+usConsoleListener::~usConsoleListener()
+{
+}
+
 /**
  * Slot Called when an input is detected in console.
  * If it's "p" character, it emits quitPause signal.

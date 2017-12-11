@@ -44,10 +44,11 @@
 
 class usConsoleListener : public QObject
 {
-  Q_OBJECT;
+  Q_OBJECT
 
 public:
   usConsoleListener();
+  ~usConsoleListener();
 
 signals:
   void quitPause();
