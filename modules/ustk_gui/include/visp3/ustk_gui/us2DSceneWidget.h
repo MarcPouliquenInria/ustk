@@ -151,9 +151,6 @@ public:
   void mouseMoveEvent(QMouseEvent *event);
   void mousePressEvent(QMouseEvent *event);
 
-  // Catch paint events, in case we want to display some informations (writing in this widget) over the vtk scene
-  void paintEvent(QPaintEvent *event);
-
   // Set view color
   void setColor(double r, double g, double b);
 
@@ -218,7 +215,7 @@ private:
   vtkPropPicker *m_propPicker;
 
   // to know if r key is currently pressed
-  bool m_rPressed;
+  bool m_hPressed;
   bool m_pPressed;
 
   // mouse button pressed

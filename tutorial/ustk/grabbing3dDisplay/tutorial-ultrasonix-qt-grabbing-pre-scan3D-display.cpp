@@ -20,6 +20,7 @@
 
 int main(int argc, char **argv)
 {
+  QSurfaceFormat::setDefaultFormat(QVTKOpenGLWidget::defaultFormat());
   // QT application
   QApplication app(argc, argv);
 

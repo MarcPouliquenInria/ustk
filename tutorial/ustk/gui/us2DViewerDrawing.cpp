@@ -11,6 +11,7 @@
 
 int main(int argc, char **argv)
 {
+  QSurfaceFormat::setDefaultFormat(QVTKOpenGLWidget::defaultFormat());
   std::string mhd_filename;
 
   for (int i = 0; i < argc; i++) {

@@ -124,13 +124,13 @@ usMedicalImageViewer::usMedicalImageViewer(std::string imageFileName)
     riw[i] = vtkSmartPointer<vtkResliceImageViewer>::New();
   }
 
-  this->view1->SetRenderWindow(riw[0]->GetRenderWindow());
+  // this->view1->SetRenderWindow(riw[0]->GetRenderWindow());
   riw[0]->SetupInteractor(this->view1->GetRenderWindow()->GetInteractor());
 
-  this->view2->SetRenderWindow(riw[1]->GetRenderWindow());
+  // this->view2->SetRenderWindow(riw[1]->GetRenderWindow());
   riw[1]->SetupInteractor(this->view2->GetRenderWindow()->GetInteractor());
 
-  this->view3->SetRenderWindow(riw[2]->GetRenderWindow());
+  // this->view3->SetRenderWindow(riw[2]->GetRenderWindow());
   riw[2]->SetupInteractor(this->view3->GetRenderWindow()->GetInteractor());
 
   for (int i = 0; i < 3; i++) {

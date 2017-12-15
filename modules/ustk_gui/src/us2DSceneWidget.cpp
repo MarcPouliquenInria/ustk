@@ -73,10 +73,13 @@ us2DSceneWidget::us2DSceneWidget(QWidget *parent, Qt::WindowFlags f) : usViewerW
   m_polyDataMeshContourMapper = vtkPolyDataMapper::New();
   m_polydataMeshContourActor = vtkActor::New();
 
+  vtkSmartPointer<vtkGenericOpenGLRenderWindow> renderWindow = vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
+  this->SetRenderWindow(renderWindow);
+
   // Picker to pick pixels
   m_propPicker = vtkPropPicker::New();
 
-  m_rPressed = false;
+  m_hPressed = false;
   m_pPressed = false;
   m_mousePressed = false;
 
@@ -85,12 +88,6 @@ us2DSceneWidget::us2DSceneWidget(QWidget *parent, Qt::WindowFlags f) : usViewerW
 
   m_pickingState = false;
 }
-
-/**
-* Paint event catcher.
-* @param event The event caught.
-*/
-void us2DSceneWidget::paintEvent(QPaintEvent *event) { usViewerWidget::paintEvent(event); }
 
 /**
 * Image data getter.
@@ -109,7 +106,6 @@ vtkMatrix4x4 *us2DSceneWidget::getResliceMatrix() { return m_resliceMatrix; }
 */
 void us2DSceneWidget::init()
 {
-
   // verify imageData and reslice matrix are set
   if (m_imageData == NULL)
     throw(vpException(vpException::fatalError, "No imageData provided in us2DSceneWidget"));
@@ -143,13 +139,12 @@ void us2DSceneWidget::init()
   m_renderer->AddActor(m_actor);
 
   // Setup render window
-  vtkRenderWindow *renderWindow = this->GetRenderWindow();
-  renderWindow->AddRenderer(m_renderer);
+  GetRenderWindow()->AddRenderer(m_renderer);
 
   // Set up the interaction
   vtkSmartPointer<vtkInteractorStyleImage> imageStyle = vtkSmartPointer<vtkInteractorStyleImage>::New();
   imageStyle->SetInteractionModeToImageSlicing();
-  renderWindow->GetInteractor()->SetInteractorStyle(imageStyle);
+  GetRenderWindow()->GetInteractor()->SetInteractorStyle(imageStyle);
   // imageStyle->EnabledOff();
 
   // picker
@@ -308,7 +303,7 @@ void us2DSceneWidget::wheelEvent(QWheelEvent *event)
 void us2DSceneWidget::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_H) {
-    m_rPressed = true;
+    m_hPressed = true;
   } else if (event->key() == Qt::Key_P) {
     m_pPressed = true;
   }
@@ -321,7 +316,7 @@ void us2DSceneWidget::keyPressEvent(QKeyEvent *event)
 void us2DSceneWidget::keyReleaseEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_H) {
-    m_rPressed = false;
+    m_hPressed = false;
   } else if (event->key() == Qt::Key_P) {
     m_pPressed = false;
   }
@@ -333,7 +328,7 @@ void us2DSceneWidget::keyReleaseEvent(QKeyEvent *event)
 */
 void us2DSceneWidget::mouseMoveEvent(QMouseEvent *event)
 {
-  if (m_rPressed) {
+  if (m_hPressed) {
     int dx = m_lastmouserPosX - event->pos().x();
     int dy = m_lastmouserPosY - event->pos().y();
 

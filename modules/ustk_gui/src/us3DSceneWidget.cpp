@@ -83,13 +83,10 @@ us3DSceneWidget::us3DSceneWidget(QWidget *parent, Qt::WindowFlags f) : usViewerW
   imageSlice3 = vtkImageSlice::New();
 
   renderer = vtkRenderer::New();
-}
 
-/**
-* Qt paint event overload if needed to update Qt widget
-* @param event QPaintEvent.
-*/
-void us3DSceneWidget::paintEvent(QPaintEvent *event) { usViewerWidget::paintEvent(event); }
+  vtkSmartPointer<vtkGenericOpenGLRenderWindow> renderWindow = vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
+  this->SetRenderWindow(renderWindow);
+}
 
 /**
 * Getter for image data pointer
@@ -260,13 +257,12 @@ void us3DSceneWidget::init()
   renderer->ResetCamera();
 
   // Setup render window
-  vtkRenderWindow *renderWindow = this->GetRenderWindow();
-  renderWindow->AddRenderer(renderer);
+  GetRenderWindow()->AddRenderer(renderer);
 
   // Interaction style with the 3D image
   vtkInteractorStyleTrackballCamera *style = vtkInteractorStyleTrackballCamera::New();
 
-  renderWindow->GetInteractor()->SetInteractorStyle(style);
+  GetRenderWindow()->GetInteractor()->SetInteractorStyle(style);
 }
 
 /**

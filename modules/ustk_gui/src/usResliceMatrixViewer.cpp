@@ -316,19 +316,21 @@ void usResliceMatrixViewer::setupUi()
 }
 
 /**
-* Get the resize event of the window, to re-comute size and positions of all widgets/layouts.
+* Get the resize event of the window, to re-compute size and positions of all widgets/layouts.
 */
 void usResliceMatrixViewer::resizeEvent(QResizeEvent *event)
 {
   // Min size : 640*480
   if (event->size().width() >= 640 && event->size().height() >= 480) {
-    QMainWindow::resizeEvent(event);
     gridLayoutWidget->setGeometry(QRect(10, 10, event->size().width() - 220, event->size().height() - 20));
     resetButton->setGeometry(QRect(event->size().width() - 180, 30, 160, 31));
     openImageButton->setGeometry(QRect(event->size().width() - 180, 80, 160, 31));
     saveView1Button->setGeometry(QRect(event->size().width() - 180, 130, 160, 31));
     saveView4Button->setGeometry(QRect(event->size().width() - 180, 180, 160, 31));
     saveView3Button->setGeometry(QRect(event->size().width() - 180, 230, 160, 31));
+    Render();
+    repaint();
+    QMainWindow::resizeEvent(event);
   }
 }
 
