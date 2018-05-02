@@ -114,11 +114,11 @@
 #include <QtWidgets/QPushButton>
 #endif
 
-#include <QVTKWidget.h>
+#include <QVTKOpenGLWidget.h>
 
 /**
  * @class us2DSceneWidget
- * @brief Class used to render a 2D slice of a vtkImageData in a vtk scene in a QWidget (based on QVTKWidget)
+ * @brief Class used to render a 2D slice of a vtkImageData in a vtk scene in a QWidget (based on QVTKOpenGLWidget)
  * @ingroup module_ustk_gui
  */
 
@@ -151,9 +151,6 @@ public:
   void mouseMoveEvent(QMouseEvent *event);
   void mousePressEvent(QMouseEvent *event);
 
-  // Catch paint events, in case we want to display some informations (writing in this widget) over the vtk scene
-  void paintEvent(QPaintEvent *event);
-
   // Set view color
   void setColor(double r, double g, double b);
 
@@ -167,7 +164,7 @@ public:
   void setPolyDataMeshContour(vtkPolyData *polyData);
 
   // catch scroll events to slice in image
-  void wheelEvent(QWheelEvent *event);
+  void translateView(double increment);
 
 public slots:
   void updateImageData(vtkImageData *imageData);

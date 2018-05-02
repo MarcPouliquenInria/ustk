@@ -80,17 +80,14 @@ us2DSceneWidget::us2DSceneWidget(QWidget *parent, Qt::WindowFlags f) : usViewerW
   m_pPressed = false;
   m_mousePressed = false;
 
+  vtkSmartPointer<vtkGenericOpenGLRenderWindow> renderWindow = vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
+  this->SetRenderWindow(renderWindow);
+
   // disable tracking to receive only mouse move events if a button is pressed
   setMouseTracking(false);
 
   m_pickingState = false;
 }
-
-/**
-* Paint event catcher.
-* @param event The event caught.
-*/
-void us2DSceneWidget::paintEvent(QPaintEvent *event) { usViewerWidget::paintEvent(event); }
 
 /**
 * Image data getter.
@@ -143,13 +140,12 @@ void us2DSceneWidget::init()
   m_renderer->AddActor(m_actor);
 
   // Setup render window
-  vtkRenderWindow *renderWindow = this->GetRenderWindow();
-  renderWindow->AddRenderer(m_renderer);
+  GetRenderWindow()->AddRenderer(m_renderer);
 
   // Set up the interaction
   vtkSmartPointer<vtkInteractorStyleImage> imageStyle = vtkSmartPointer<vtkInteractorStyleImage>::New();
   imageStyle->SetInteractionModeToImageSlicing();
-  renderWindow->GetInteractor()->SetInteractorStyle(imageStyle);
+  GetRenderWindow()->GetInteractor()->SetInteractorStyle(imageStyle);
   // imageStyle->EnabledOff();
 
   // picker
@@ -263,19 +259,15 @@ void us2DSceneWidget::changeMatrix(vpHomogeneousMatrix matrix)
 }
 
 /**
-* Mouse wheel event catcher. Updates the translation along the plane normal.
+* Translates the cutting plane along the normal direction.
 */
-void us2DSceneWidget::wheelEvent(QWheelEvent *event)
+void us2DSceneWidget::translateView(double increment)
 {
-  int increment = event->delta() / 120;
-
-  // To improve : mean of the 3 spacings according to the plane orientation
-  double sliceSpacing = m_imageData->GetSpacing()[2];
 
   vpTranslationVector tVec;
   tVec.data[0] = 0;
   tVec.data[1] = 0;
-  tVec.data[2] = sliceSpacing * increment;
+  tVec.data[2] = increment;
 
   vpHomogeneousMatrix MTrans;
   MTrans.buildFrom(tVec, vpThetaUVector(0, 0, 0));
@@ -298,8 +290,6 @@ void us2DSceneWidget::wheelEvent(QWheelEvent *event)
 
   // emit signal to inform other views the reslice matrix changed
   emit(matrixChanged(m_resliceMatrix));
-
-  event->accept();
 }
 
 /**
@@ -311,6 +301,10 @@ void us2DSceneWidget::keyPressEvent(QKeyEvent *event)
     m_rPressed = true;
   } else if (event->key() == Qt::Key_P) {
     m_pPressed = true;
+  } else if (event->key() == Qt::Key_Up) {
+    translateView(0.005); // 5mm front
+  } else if (event->key() == Qt::Key_Down) {
+    translateView(-0.005); // 5mm back
   }
   event->accept();
 }

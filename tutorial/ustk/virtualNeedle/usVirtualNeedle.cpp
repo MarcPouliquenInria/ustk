@@ -90,12 +90,6 @@ usVirtualNeedle::~usVirtualNeedle()
 }*/
 
 /**
-* Qt paint event overload if needed to update Qt widget
-* @param event QPaintEvent.
-*/
-void usVirtualNeedle::paintEvent(QPaintEvent *event) { usViewerWidget::paintEvent(event); }
-
-/**
 * Qt key press event catcher, used to move the virtual needle in the scene.
 * @param event QKeyEvent.
 */

@@ -3,14 +3,15 @@
 #ifdef USTK_HAVE_VTK_QT
 
 #include <visp3/ustk_core/us.h>
+#include <visp3/ustk_core/usImageIo.h>
 #include <visp3/ustk_core/usImagePostScan3D.h>
 #include <visp3/ustk_gui/us3DSceneWidget.h>
 #include <visp3/ustk_gui/usVTKConverter.h>
-#include <visp3/ustk_core/usImageIo.h>
 #include <vtkMetaImageReader.h>
 
 int main(int argc, char **argv)
 {
+  QSurfaceFormat::setDefaultFormat(QVTKOpenGLWidget::defaultFormat());
   std::string mhd_filename;
 
   for (int i = 0; i < argc; i++) {

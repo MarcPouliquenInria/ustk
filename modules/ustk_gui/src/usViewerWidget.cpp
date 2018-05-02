@@ -52,13 +52,8 @@
 /**
 * Constructor.
 */
-usViewerWidget::usViewerWidget(QWidget *parent, Qt::WindowFlags f) : QVTKWidget(parent, f) {}
+usViewerWidget::usViewerWidget(QWidget *parent, Qt::WindowFlags f) : QVTKOpenGLWidget(parent, f) {}
 
 usViewerWidget::~usViewerWidget() {}
 
-/**
-* Qt paint event overload if needed to update Qt widget
-* @param event QPAintEvent.
-*/
-void usViewerWidget::paintEvent(QPaintEvent *event) { QVTKWidget::paintEvent(event); }
 #endif

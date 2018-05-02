@@ -3,10 +3,10 @@
 #ifdef USTK_HAVE_VTK_QT
 
 #include <visp3/ustk_core/us.h>
+#include <visp3/ustk_core/usImageIo.h>
 #include <visp3/ustk_core/usImagePostScan3D.h>
 #include <visp3/ustk_gui/us2DSceneWidget.h>
 #include <visp3/ustk_gui/usVTKConverter.h>
-#include <visp3/ustk_core/usImageIo.h>
 #include <vtkMetaImageReader.h>
 
 int main(int argc, char **argv)
@@ -33,6 +33,7 @@ int main(int argc, char **argv)
     }
   }
   // QT application
+  QSurfaceFormat::setDefaultFormat(QVTKOpenGLWidget::defaultFormat());
   QApplication app(argc, argv);
 
   // read us image
@@ -50,7 +51,7 @@ int main(int argc, char **argv)
   // set reslice matrix
   vpHomogeneousMatrix mat;
   mat.eye();
-  mat.buildFrom(0, 0, 0.05, 0, 0, 0);
+  mat.buildFrom(0, 0, 0.05, 0, 0, M_PI);
 
   vtkMatrix4x4 *vtkMat = vtkMatrix4x4::New();
   usVTKConverter::convert(mat, vtkMat);

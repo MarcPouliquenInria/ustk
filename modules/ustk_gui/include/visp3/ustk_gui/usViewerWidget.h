@@ -56,7 +56,8 @@
 #include <QtWidgets/QPushButton>
 #endif
 // VTK includes
-#include <QVTKWidget.h>
+#include <QVTKOpenGLWidget.h>
+#include <vtkGenericOpenGLRenderWindow.h>
 
 /**
  * @class usViewerWidget
@@ -64,15 +65,13 @@
  * @ingroup module_ustk_gui
  */
 
-class VISP_EXPORT usViewerWidget : public QVTKWidget
+class VISP_EXPORT usViewerWidget : public QVTKOpenGLWidget
 {
   Q_OBJECT
 public:
   // Constructor/Destructor
   usViewerWidget(QWidget *parent = NULL, Qt::WindowFlags f = 0);
   virtual ~usViewerWidget();
-
-  void paintEvent(QPaintEvent *event);
 };
 #endif
 #endif // US_VIEWER_WIDGET
